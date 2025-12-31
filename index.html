@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Please Wait</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page center">
+  <div class="card glow">
+    <h2 class="fade">Please wait…</h2>
+    <p class="fade delay1">Something special is waiting for you 💖</p>
+
+    <div id="countdown" class="countdown pulse"></div>
+
+   <!-- Temporary skip for testing -->
+   
+
+  </div>
+</div>
+<div class="analog-clock">
+  <div class="hour-hand"></div>
+  <div class="minute-hand"></div>
+  <div class="second-hand"></div>
+  <div class="center-dot"></div>
+</div>
+
+
+
+
+<div class="effects"></div>
+
+<script>
+const countdownEl = document.getElementById("countdown");
+
+/* Set your target date/time here */
+const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    clearInterval(timer);
+
+    // Automatically go to Page 2 but keep Page 1 in history
+    window.location.assign("page2.html"); 
+  } else {
+    const h = Math.floor(diff / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+
+    countdownEl.innerText = `${h}h ${m}m ${s}s`;
+  }
+}, 1000);
+</script>
+
+<script src="script.js"></script> <!-- for hearts & sparkles -->
+</body>
+</html>
+
